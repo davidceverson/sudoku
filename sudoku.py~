@@ -1,0 +1,57 @@
+def setCell(r, c):
+    """set the value of a cell"""
+    if r > 9 && c > 9:
+        return true
+
+    next_r, next_c = nextCell(r, c)
+
+    if tableau[r][c] > 0:
+        return setCell(next_r, next_c)
+    else
+        for v in range(1, 9):
+            if testRow(r, c, v) && testCol(r, c, v) && testSquare)r, c, v):
+                tableau[r][c] = v
+                if setCell(next_r, next_c):
+                    return true
+                else:
+                    continue
+            tableau[r][c] = 0
+     return false
+
+def testRow(r, c, v):
+    """test if value v already exists in this row"""
+    for k in range(0, 8):
+        if tableau[r][k] == v:
+            return false
+    return true
+
+def testCol(r, c, v):
+    """test if value v already exists in this column"""
+    for k in range(0, 8):
+        if tableau[k][c] == v:
+            return false
+    return true
+
+def testSquare(r, c, v):
+    """test if the value v already exists in this sub-area (3x3) of the tableau"""
+    R = (r / 3) * 3
+    C = (c / 3) * 3
+    for m in range(R, R + 3):
+        for n in range (C, C + 3):
+            if tableau[m][n] == v:
+                return false
+    return true
+
+def nextCell(r, c):
+    """return the row r and column c of the next cell in descending left-right order from the NW corner"""
+    if r == 8 && c == 8:
+        return 9, 9
+
+    if r <= 8 && c <= 8:
+        c++
+        return r, c
+
+    if r < 8 && c == 8:
+        c = 0
+        r++
+        return r, c
